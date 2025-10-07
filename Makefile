@@ -6,3 +6,5 @@ build:
 
 open-ig:
 	open ./output/index.html
+
+build-and-open: build open-ig
