@@ -1,0 +1,20 @@
+name: Build IG
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: hl7fhir/ig-publisher-base
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Update Publisher
+        run: ./_updatePublisher.sh -f -y
+      - name: Install sushi
+        run: npm install -g fsh-sushi
+      - name: Run IG Publisher
+        run: ./_genonce.sh
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ig
+          path: ./output
