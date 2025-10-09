@@ -1,0 +1,11 @@
+{
+    "name": "kinnexus.fhir.template",
+    "version": "0.1.0",
+    "type": "fhir.template",    
+    "description": "Kinnexus FHIR IG Template",
+    "base": "fhir.base.template",
+    "dependencies": {
+      "fhir.base.template": "current"
+    }
+  }
+  
