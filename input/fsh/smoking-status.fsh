@@ -1,0 +1,2 @@
+Profile: KinnexusSmokingStatus
+Parent: AUCoreSmokingStatus

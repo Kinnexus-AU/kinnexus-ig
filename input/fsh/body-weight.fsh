@@ -1,0 +1,2 @@
+Profile: KinnexusBodyWeight
+Parent: AUCoreBodyWeight

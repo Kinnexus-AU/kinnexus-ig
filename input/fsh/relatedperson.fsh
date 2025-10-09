@@ -1,0 +1,2 @@
+Profile: KinnexusRelatedPerson
+Parent: AUCoreRelatedPerson
