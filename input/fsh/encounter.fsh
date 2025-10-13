@@ -1,0 +1,2 @@
+Profile: KinnexusEncounter
+Parent: AUCoreEncounter

@@ -1,0 +1,2 @@
+Profile: KinnexusAllergyIntolerance
+Parent: AUCoreAllergyIntolerance
