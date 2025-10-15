@@ -20,7 +20,7 @@ Usage: #definition
 * contact.telecom.use = #work
 * description = "This CapabilityStatement describes the basic rules for the [Kinnexus Responder actor](ActorDefinition-au-core-actor-responder.html) that is responsible for providing responses to queries submitted by Kinnexus Requesters. The complete list of FHIR profiles, RESTful operations, and search parameters supported by Kinnexus Responders are defined in this CapabilityStatement."
 * jurisdiction = urn:iso:std:iso:3166#AU
-* copyright = "Used by permission of HL7 International, all rights reserved Creative Commons License. HL7 Australia© 2022+; Licensed Under Creative Commons No Rights Reserved."
+* copyright = "All rights reserved Creative Commons License. Kinnexus© 2025+; Licensed Under Creative Commons No Rights Reserved."
 * kind = #requirements
 * fhirVersion = #4.0.1
 * format[0] = #json
@@ -29,9 +29,6 @@ Usage: #definition
 * format[=].extension.valueCode = #SHALL
 * format[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * format[=].extension.valueCode = #SHOULD
-* patchFormat = #application/json-patch+json
-* patchFormat.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* patchFormat.extension.valueCode = #SHOULD
 * implementationGuide[0] = "http://hl7.org.au/fhir/ImplementationGuide/hl7.fhir.au.base"
 * implementationGuide[+] = "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch|2.2.0"
 * implementationGuide[+] = "http://hl7.org/fhir/uv/ipa/ImplementationGuide/hl7.fhir.uv.ipa"
