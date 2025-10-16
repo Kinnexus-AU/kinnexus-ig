@@ -37,3 +37,15 @@ RuleSet: ComboSearchNameRequired
 
 RuleSet: ComboSearchRelationshipRequired
 * insert ComboSearch([[required]], [[relationship]])
+
+RuleSet: ComboSearchStatusRequired
+* insert ComboSearch([[required]], [[status]])
+
+RuleSet: ComboSearchLocationRequired
+* insert ComboSearch([[required]], [[location]])
+
+RuleSet: ComboSearchClassRequired
+* insert ComboSearch([[required]], [[class]])
+
+RuleSet: ComboSearchDateRequired
+* insert ComboSearch([[required]], [[date]])
