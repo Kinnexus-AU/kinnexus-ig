@@ -20,7 +20,7 @@ Usage: #definition
 * contact.telecom.use = #work
 * description = "This CapabilityStatement describes the basic rules for the [Kinnexus Responder actor](ActorDefinition-au-core-actor-responder.html) that is responsible for providing responses to queries submitted by Kinnexus Requesters. The complete list of FHIR profiles, RESTful operations, and search parameters supported by Kinnexus Responders are defined in this CapabilityStatement."
 * jurisdiction = urn:iso:std:iso:3166#AU
-* copyright = "Used by permission of HL7 International, all rights reserved Creative Commons License. HL7 Australia© 2022+; Licensed Under Creative Commons No Rights Reserved."
+* copyright = "All rights reserved Creative Commons License. Kinnexus© 2025+; Licensed Under Creative Commons No Rights Reserved."
 * kind = #requirements
 * fhirVersion = #4.0.1
 * format[0] = #json
@@ -29,9 +29,6 @@ Usage: #definition
 * format[=].extension.valueCode = #SHALL
 * format[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * format[=].extension.valueCode = #SHOULD
-* patchFormat = #application/json-patch+json
-* patchFormat.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* patchFormat.extension.valueCode = #SHOULD
 * implementationGuide[0] = "http://hl7.org.au/fhir/ImplementationGuide/hl7.fhir.au.base"
 * implementationGuide[+] = "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch|2.2.0"
 * implementationGuide[+] = "http://hl7.org/fhir/uv/ipa/ImplementationGuide/hl7.fhir.uv.ipa"
@@ -281,7 +278,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHALL** support search using the category code defined in each profile supported.\n\nThe responder **SHALL** support search using the category code defined in each profile supported."
 * rest.resource[=].searchParam[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].searchParam[=].extension.valueCode = #MAY
+* rest.resource[=].searchParam[=].extension.valueCode = #SHALL
 * rest.resource[=].searchParam[=].name = "code"
 * rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/clinical-code"
 * rest.resource[=].searchParam[=].type = #token
