@@ -24,11 +24,8 @@ Usage: #definition
 * kind = #requirements
 * fhirVersion = #4.0.1
 * format[0] = #json
-* format[+] = #xml
 * format[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * format[=].extension.valueCode = #SHALL
-* format[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* format[=].extension.valueCode = #SHOULD
 * implementationGuide[0] = "http://hl7.org.au/fhir/ImplementationGuide/hl7.fhir.au.base"
 * implementationGuide[+] = "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch|2.2.0"
 * implementationGuide[+] = "http://hl7.org/fhir/uv/ipa/ImplementationGuide/hl7.fhir.uv.ipa"
