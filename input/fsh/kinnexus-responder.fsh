@@ -1,3 +1,37 @@
+RuleSet: Interaction(expectation, code)
+* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].interaction[=].extension.valueCode = {expectation}
+* rest.resource[=].interaction[=].code = {code}
+
+RuleSet: ReferencePolicy(expectation, policy)
+* rest.resource[=].referencePolicy = {policy}
+* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].referencePolicy.extension.valueCode = {expectation}
+
+RuleSet: SearchParam(expectation, paramName, definition, paramType, documentation)
+* rest.resource[=].searchParam[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].searchParam[=].extension.valueCode = {expectation}
+* rest.resource[=].searchParam[=].name = "{paramName}"
+* rest.resource[=].searchParam[=].definition = "{definition}"
+* rest.resource[=].searchParam[=].type = {paramType}
+* rest.resource[=].searchParam[=].documentation = "{documentation}"
+
+RuleSet: ComboSearch(url, paramName)
+* rest.resource[=].extension[=].extension[+].url = "{url}"
+* rest.resource[=].extension[=].extension[=].valueString = "{paramName}"
+
+RuleSet: ComboSearchPatientRequired
+* insert ComboSearch([[required]], [[patient]])
+
+RuleSet: ComboSearchClinicalStatusRequired
+* insert ComboSearch([[required]], [[clinical-status]])
+
+RuleSet: ComboSearchCategoryRequired
+* insert ComboSearch([[required]], [[category]])
+
+RuleSet: ComboSearch_SortRequired
+* insert ComboSearch([[required]], [[_sort]])
+
 Instance: kinnexus-responder
 InstanceOf: CapabilityStatement
 Usage: #definition
@@ -38,40 +72,29 @@ Usage: #definition
 * rest.mode = #server
 * rest.documentation = "The Kinnexus Responder **SHALL**:\n1. Support the Kinnexus Patient resource profile.\n1. Support at least one additional resource profile from the list of Kinnexus Profiles.\n1. Implement the RESTful behaviour according to the FHIR specification.\n1. Return the following response classes:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 400): invalid parameter\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 401/4xx): unauthorized request\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 403): insufficient scope\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 404): unknown resource\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Support JSON source formats for all Kinnexus interactions.\n1. Declare a CapabilityStatement identifying the list of profiles, operations, and search parameters supported.\n\n\n\n\n\n\n\n\nThe Kinnexus Responder **SHOULD**:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Support XML source formats for all Kinnexus interactions."
 * rest.security.description = "See the [Security and Privacy](security.html) page for Kinnexus security requirements."
+
+// AllergyIntolerance
 * rest.resource[0].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].extension[=].valueCode = #SHOULD
-* rest.resource[=].extension[=].extension[+].url = "required"
-* rest.resource[=].extension[=].extension[=].valueString = "patient"
-* rest.resource[=].extension[=].extension[+].url = "required"
-* rest.resource[=].extension[=].extension[=].valueString = "clinical-status"
+* insert ComboSearchPatientRequired
+* insert ComboSearchClinicalStatusRequired
+* insert ComboSearchCategoryRequired
+* insert ComboSearch_SortRequired
 * rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
 * rest.resource[=].type = #AllergyIntolerance
 * rest.resource[=].profile = Canonical(KinnexusAllergyIntolerance)
 * rest.resource[=].documentation = "If the responder supports the AllergyIntolerance resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the AllergyIntolerance resource."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
-* rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].searchParam[=].extension.valueCode = #MAY
-* rest.resource[=].searchParam[=].name = "clinical-status"
-* rest.resource[=].searchParam[=].definition = "http://hl7.org/fhir/SearchParameter/AllergyIntolerance-clinical-status"
-* rest.resource[=].searchParam[=].type = #token
-* rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe responder **SHALL** support both."
-* rest.resource[=].searchParam[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].searchParam[=].extension.valueCode = #SHALL
-* rest.resource[=].searchParam[=].name = "patient"
-* rest.resource[=].searchParam[=].definition = "http://hl7.org.au/fhir/core/SearchParameter/au-core-clinical-patient"
-* rest.resource[=].searchParam[=].type = #reference
-* rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least an id value and **MAY** provide both the Type and id values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.\n\nThe responder **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile."
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
+* insert SearchParam(#MAY, [[clinical-status]], [[http://hl7.org/fhir/SearchParameter/AllergyIntolerance-clinical-status]], #token, [[The requester **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe responder **SHALL** support both.]])
+* insert SearchParam(#SHALL, [[patient]], [[http://hl7.org.au/fhir/core/SearchParameter/au-core-clinical-patient]], #reference, [[The requester **SHALL** provide at least an id value and **MAY** provide both the Type and id values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.\n\nThe responder **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.]])
+* insert SearchParam(#SHALL, [[category]], [[http://hl7.org/fhir/SearchParameter/AllergyIntolerance-category]], #token, [[TODO: Write text]])
+* insert SearchParam(#SHALL, [[_sort]], [[]], #string, [[The client and server **SHALL** support search result sorting by date and **MAY** support other values.]])
 
+// Encounter
 * rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
@@ -145,6 +168,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #reference
 * rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least an id value and **MAY** provide both the Type and id values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.\n\nThe responder **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile."
 
+// Immunization
 * rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
@@ -205,6 +229,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #reference
 * rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least an id value and **MAY** provide both the Type and id values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.\n\nThe responder **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile."
 
+// Observation
 * rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
@@ -299,6 +324,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #reference
 * rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least an id value and **MAY** provide both the Type and id values.\n\nThe responder **SHALL** support both.\n\nThe requester **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile.\n\nThe responder **SHOULD** support chained search patient.identifier using IHI, Medicare Number, and DVA Number identifiers as defined in the Kinnexus Patient profile."
 
+// Patient
 * rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHALL
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
@@ -388,6 +414,7 @@ Usage: #definition
 * rest.resource[=].searchParam[=].type = #token
 * rest.resource[=].searchParam[=].documentation = "The requester **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe responder **SHALL** support both."
 
+// RelatedPerson
 * rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = #SHOULD
 * rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
