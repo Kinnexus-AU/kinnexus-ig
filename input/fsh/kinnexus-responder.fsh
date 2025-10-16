@@ -128,15 +128,9 @@ Usage: #definition
 * rest.resource[=].type = #Encounter
 * rest.resource[=].profile = Canonical(KinnexusEncounter)
 * rest.resource[=].documentation = "If the responder supports the Encounter resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the Encounter resource.\n\nThe Encounter resource can communicate the clinical indication using either a code in `Encounter.reasonCode` or a reference using `Encounter.reasonReference`. Although both `Encounter.reasonCode` and `Encounter.reasonReference` are marked as *Must Support*, a responder is not required to support both but **SHALL** support at least one of these elements. The requester **SHALL** support both elements."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
 * rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension.valueCode = #MAY
 * rest.resource[=].searchParam[=].name = "class"
@@ -195,15 +189,9 @@ Usage: #definition
 * rest.resource[=].type = #Immunization
 * rest.resource[=].profile = Canonical(KinnexusImmunization)
 * rest.resource[=].documentation = "If the responder supports the Immunization resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the Immunization resource."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
 * rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension.valueCode = #MAY
 * rest.resource[=].searchParam[=].name = "date"
@@ -284,15 +272,9 @@ Usage: #definition
 * rest.resource[=].supportedProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].supportedProfile[=].extension.valueCode = #SHALL
 * rest.resource[=].documentation = "If the responder supports the Observation resource, the responder **SHALL** support the Kinnexus profiles and the conformance expectations for the Observation resource."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
 * rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension.valueCode = #MAY
 * rest.resource[=].searchParam[=].name = "category"
@@ -358,15 +340,9 @@ Usage: #definition
 * rest.resource[=].type = #Patient
 * rest.resource[=].profile = Canonical(KinnexusPatient)
 * rest.resource[=].documentation = "Responders **SHALL** support the capability for a requester application to access the patient record using any of the following API calls:\n\n```GET [url]/Patient/[id]```\n\n```GET [url]/Patient?_id=[id]```\n\n```GET [url]/Patient?identifier=[identifier]```\n\nResponders are not required to support any additional search parameters, and requesters **SHOULD NOT** expect responders to do so.\n\nThe responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the Patient resource."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
 * rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension.valueCode = #SHALL
 * rest.resource[=].searchParam[=].name = "_id"
@@ -434,15 +410,9 @@ Usage: #definition
 * rest.resource[=].type = #RelatedPerson
 * rest.resource[=].profile = Canonical(KinnexusRelatedPerson)
 * rest.resource[=].documentation = "If the responder supports the RelatedPerson resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the RelatedPerson resource."
-* rest.resource[=].interaction[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #read
-* rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].interaction[=].extension.valueCode = #SHALL
-* rest.resource[=].interaction[=].code = #search-type
-* rest.resource[=].referencePolicy = #resolves
-* rest.resource[=].referencePolicy.extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].referencePolicy.extension.valueCode = #SHOULD
+* insert Interaction(#SHALL, #read)
+* insert Interaction(#SHALL, #search-type)
+* insert ReferencePolicy(#SHOULD, #resolves)
 * rest.resource[=].searchParam[0].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].searchParam[=].extension.valueCode = #SHOULD
 * rest.resource[=].searchParam[=].name = "_id"
