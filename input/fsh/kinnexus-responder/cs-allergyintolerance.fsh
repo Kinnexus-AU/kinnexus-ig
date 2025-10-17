@@ -20,6 +20,6 @@ RuleSet: CSAllergyIntolerance
 * insert ReferencePolicy(#SHOULD, #resolves)
 
 * insert SearchParamPatient
-* insert SearchParam(#SHALL, [[category]], [[http://hl7.org/fhir/SearchParameter/AllergyIntolerance-category]], #token, [[...]])
+* insert SearchParam(#SHALL, [[category]], [[http://hl7.org/fhir/SearchParameter/AllergyIntolerance-category]], #token, [[The client **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe server **SHALL** support both.]])
 * insert SearchParam(#SHALL, [[clinical-status]], [[http://hl7.org/fhir/SearchParameter/AllergyIntolerance-clinical-status]], #token, [[The requester **SHALL** provide at least a code value and **MAY** provide both the system and code values.\n\nThe responder **SHALL** support both.]])
 * insert SearchParam_Sort
