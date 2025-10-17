@@ -1,3 +1,12 @@
+RuleSet: ResourceConformanceExpectation(expectation)
+* rest.resource[0].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].valueCode = {expectation}
+
+RuleSet: ComboSearchExpectation(expectation)
+* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[=].extension[=].valueCode = {expectation}
+* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
+
 RuleSet: Interaction(expectation, code)
 * rest.resource[=].interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].interaction[=].extension.valueCode = {expectation}

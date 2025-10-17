@@ -1,19 +1,14 @@
 RuleSet: ComboSearchAIPatientClinicalStatusCategorySort
-* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].extension[=].valueCode = #SHOULD
+* insert ComboSearchExpectation(#SHOULD)
 * insert ComboSearchPatientRequired
 * insert ComboSearchClinicalStatusRequired
 * insert ComboSearchCategoryRequired
 * insert ComboSearch_SortRequired
-* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
-
-RuleSet: ComboSearchParams
-* rest.resource[0].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].valueCode = #SHOULD
-* insert ComboSearchAIPatientClinicalStatusCategorySort
 
 RuleSet: CSAllergyIntolerance
-* insert ComboSearchParams
+* insert ResourceConformanceExpectation(#SHOULD)
+
+* insert ComboSearchAIPatientClinicalStatusCategorySort
 
 * rest.resource[=].type = #AllergyIntolerance
 * rest.resource[=].profile = Canonical(KinnexusAllergyIntolerance)
