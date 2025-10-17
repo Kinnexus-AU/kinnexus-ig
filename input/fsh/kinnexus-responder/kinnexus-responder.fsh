@@ -51,3 +51,4 @@ Usage: #definition
 * insert CSObservation
 * insert CSPatient
 * insert CSRelatedPerson
+* insert CSQuestionnaireResponse

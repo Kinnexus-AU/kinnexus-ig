@@ -38,6 +38,9 @@ RuleSet: ComboSearchClinicalStatusRequired
 RuleSet: ComboSearchCategoryRequired
 * insert ComboSearch([[required]], [[category]])
 
+RuleSet: ComboSearchQuestionnaireRequired
+* insert ComboSearch([[required]], [[questionnaire]])
+
 RuleSet: ComboSearch_SortRequired
 * insert ComboSearch([[required]], [[_sort]])
 
