@@ -1,5 +1,5 @@
 RuleSet: ResourceConformanceExpectation(expectation)
-* rest.resource[0].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.resource[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].extension[=].valueCode = {expectation}
 
 RuleSet: ComboSearchExpectation(expectation)
@@ -58,3 +58,6 @@ RuleSet: ComboSearchClassRequired
 
 RuleSet: ComboSearchDateRequired
 * insert ComboSearch([[required]], [[date]])
+
+RuleSet: ComboSearchVaccineCodeRequired
+* insert ComboSearch([[required]], [[vaccine-code]])

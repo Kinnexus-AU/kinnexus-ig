@@ -6,13 +6,13 @@ RuleSet: ComboSearchAIPatientClinicalStatusCategorySort
 * insert ComboSearch_SortRequired
 
 RuleSet: CSAllergyIntolerance
+* rest.resource[+].type = #AllergyIntolerance
+* rest.resource[=].profile = Canonical(KinnexusAllergyIntolerance)
+* rest.resource[=].documentation = "If the responder supports the AllergyIntolerance resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the AllergyIntolerance resource."
+
 * insert ResourceConformanceExpectation(#SHOULD)
 
 * insert ComboSearchAIPatientClinicalStatusCategorySort
-
-* rest.resource[=].type = #AllergyIntolerance
-* rest.resource[=].profile = Canonical(KinnexusAllergyIntolerance)
-* rest.resource[=].documentation = "If the responder supports the AllergyIntolerance resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the AllergyIntolerance resource."
 
 * insert Interaction(#SHALL, #read)
 * insert Interaction(#SHALL, #search-type)

@@ -19,16 +19,16 @@ RuleSet: ComboSearchEncounterPatientStatus
 * insert ComboSearchStatusRequired
 
 RuleSet: CSEncounter
+* rest.resource[+].type = #Encounter
+* rest.resource[=].profile = Canonical(KinnexusEncounter)
+* rest.resource[=].documentation = "If the responder supports the Encounter resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the Encounter resource.\n\nThe Encounter resource can communicate the clinical indication using either a code in `Encounter.reasonCode` or a reference using `Encounter.reasonReference`. Although both `Encounter.reasonCode` and `Encounter.reasonReference` are marked as *Must Support*, a responder is not required to support both but **SHALL** support at least one of these elements. The requester **SHALL** support both elements."
+
 * insert ResourceConformanceExpectation(#SHOULD)
 
 * insert ComboSearchEncounterDatePatient
 * insert ComboSearchEncounterClassPatient
 * insert ComboSearchEncounterPatientLocation
 * insert ComboSearchEncounterPatientStatus
-
-* rest.resource[=].type = #Encounter
-* rest.resource[=].profile = Canonical(KinnexusEncounter)
-* rest.resource[=].documentation = "If the responder supports the Encounter resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the Encounter resource.\n\nThe Encounter resource can communicate the clinical indication using either a code in `Encounter.reasonCode` or a reference using `Encounter.reasonReference`. Although both `Encounter.reasonCode` and `Encounter.reasonReference` are marked as *Must Support*, a responder is not required to support both but **SHALL** support at least one of these elements. The requester **SHALL** support both elements."
 
 * insert Interaction(#SHALL, #read)
 * insert Interaction(#SHALL, #search-type)
