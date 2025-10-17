@@ -8,7 +8,7 @@ RuleSet: ComboSearchImmunizationPatientVaccineCodeDateSort
 RuleSet: CSImmunization
 * rest.resource[+].type = #Immunization
 * rest.resource[=].profile = Canonical(KinnexusImmunization)
-* rest.resource[=].documentation = "If the responder supports the Immunization resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the Immunization resource."
+* rest.resource[=].documentation = "The responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the Immunization resource."
 
 * insert ResourceConformanceExpectation(#SHALL)
 

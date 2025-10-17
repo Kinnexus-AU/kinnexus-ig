@@ -1,7 +1,7 @@
 RuleSet: CSRelatedPerson
 * rest.resource[+].type = #RelatedPerson
 * rest.resource[=].profile = Canonical(KinnexusRelatedPerson)
-* rest.resource[=].documentation = "If the responder supports the RelatedPerson resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the RelatedPerson resource."
+* rest.resource[=].documentation = "The responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the RelatedPerson resource."
 
 * insert ResourceConformanceExpectation(#SHALL)
 

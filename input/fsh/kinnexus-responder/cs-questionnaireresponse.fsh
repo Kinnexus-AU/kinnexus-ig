@@ -9,7 +9,7 @@ RuleSet: ComboSearchQRPatientStatusSortCount
 RuleSet: CSQuestionnaireResponse
 * rest.resource[+].type = #QuestionnaireResponse
 * rest.resource[=].profile = Canonical(KinnexusQuestionnaireResponse)
-* rest.resource[=].documentation = "TODO: Write text"
+* rest.resource[=].documentation = "The responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the QuestionnaireResponse resource."
 
 * insert ResourceConformanceExpectation(#SHALL)
 

@@ -15,7 +15,7 @@ RuleSet: CSObservation
 * rest.resource[=].supportedProfile[=].extension.valueCode = #SHALL
 * rest.resource[=].supportedProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
 * rest.resource[=].supportedProfile[=].extension.valueCode = #SHALL
-* rest.resource[=].documentation = "If the responder supports the Observation resource, the responder **SHALL** support the Kinnexus profiles and the conformance expectations for the Observation resource."
+* rest.resource[=].documentation = "The responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the Observation resource."
 
 * insert ResourceConformanceExpectation(#SHALL)
 

@@ -8,7 +8,7 @@ RuleSet: ComboSearchAIPatientCategoryClinicalStatusSort
 RuleSet: CSAllergyIntolerance
 * rest.resource[+].type = #AllergyIntolerance
 * rest.resource[=].profile = Canonical(KinnexusAllergyIntolerance)
-* rest.resource[=].documentation = "If the responder supports the AllergyIntolerance resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the AllergyIntolerance resource."
+* rest.resource[=].documentation = "The responder **SHALL** support the Kinnexus profile and **SHALL** support the conformance expectations for the AllergyIntolerance resource."
 
 * insert ResourceConformanceExpectation(#SHALL)
 
