@@ -14,8 +14,28 @@ Usage: #definition
 * kind = #requirements
 * fhirVersion = #4.0.1
 * rest.mode = #server
-* rest.documentation = "The Kinnexus Responder **SHALL**:\n1. Support the Kinnexus Patient resource profile.\n1. Support at least one additional resource profile from the list of Kinnexus Profiles.\n1. Implement the RESTful behaviour according to the FHIR specification.\n1. Return the following response classes:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 400): invalid parameter\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 401/4xx): unauthorized request\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 403): insufficient scope\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n   - (Status 404): unknown resource\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Support JSON source formats for all Kinnexus interactions.\n1. Declare a CapabilityStatement identifying the list of profiles, operations, and search parameters supported."
-* rest.security.description = "See the [Security and Privacy](security.html) page for Kinnexus security requirements."
+* rest.documentation = "Kinnexus Launcher Server **SHALL**:
+1. Support the [Kinnexus AllergyIntolerance resource profile](StructureDefinition-KinnexusAllergyIntolerance.html)
+1. Support the [Kinnexus Encounter resource profile](StructureDefinition-KinnexusEncounter.html)
+1. Support the [Kinnexus Immunization resource profile](StructureDefinition-KinnexusImmunization.html)
+1. Support the [Kinnexus Observation resource profile](profiles-and-extensions.html#observation)
+1. Support the [Kinnexus Patient resource profile](StructureDefinition-KinnexusPatient.html)
+1. Support the [Kinnexus QuestionnaireResponse resource profile](StructureDefinition-KinnexusQuestionnaireResponse.html)
+1. Support the [Kinnexus RelatedPerson resource profiles](StructureDefinition-KinnexusRelatedPerson.html)
+1. Implement the RESTful behavior according to the FHIR specification
+1. Support JSON source formats for all interactions"
+
+* rest.security.cors = true
+* rest.security.cors.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.security.cors.extension[0].valueCode = #SHALL
+* rest.security.service = http://terminology.hl7.org/CodeSystem/restful-security-service#SMART-on-FHIR
+* rest.security.service.extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.security.service.extension[0].valueCode = #SHALL
+* rest.security.description = "Smart Forms Launcher Server **SHALL**:
+1. Support CORS headers
+1. Support SMART on FHIR security services
+
+Also see the [AU Core Security and Privacy](https://hl7.org.au/fhir/core/1.0.0/security.html) section for general considerations and recommendations."
 
 * insert Extension([[http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm]], valueInteger, 0)
 * insert ExtensionWithChild([[http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status]], valueCode, #trial-use, [[http://hl7.org/fhir/StructureDefinition/structuredefinition-conformance-derivedFrom]], valueCanonical, [[http://hl7.org.au/fhir/core/ImplementationGuide/hl7.fhir.au.core]])
@@ -24,9 +44,8 @@ Usage: #definition
 
 * insert FormatWithExpectation(#json, #SHALL)
 
-* insert ImplementationGuideWithExpectation([[http://hl7.org.au/fhir/ImplementationGuide/hl7.fhir.au.base]], #SHALL)
-* insert ImplementationGuideWithExpectation([[http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch|2.2.0]], #SHOULD)
-* insert ImplementationGuideWithExpectation([[http://hl7.org/fhir/uv/ipa/ImplementationGuide/hl7.fhir.uv.ipa]], #SHOULD)
+* insert ImplementationGuideWithExpectation([[http://hl7.org/fhir/smart-app-launch/STU2.2/index.html]], #SHALL)
+* insert ImplementationGuideWithExpectation([[https://build.fhir.org/ig/HL7/sdc/index.html]], #SHOULD)
 
 * insert SystemInteraction(#MAY, #transaction)
 * insert SystemInteraction(#MAY, #batch)
