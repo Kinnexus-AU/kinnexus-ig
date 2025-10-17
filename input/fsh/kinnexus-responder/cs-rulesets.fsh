@@ -41,6 +41,9 @@ RuleSet: ComboSearchCategoryRequired
 RuleSet: ComboSearch_SortRequired
 * insert ComboSearch([[required]], [[_sort]])
 
+RuleSet: ComboSearch_CountRequired
+* insert ComboSearch([[required]], [[_count]])
+
 RuleSet: ComboSearchNameRequired
 * insert ComboSearch([[required]], [[name]])
 
