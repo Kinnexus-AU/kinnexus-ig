@@ -79,3 +79,34 @@ RuleSet: ComboSearchFamilyRequired
 
 RuleSet: ComboSearchGenderRequired
 * insert ComboSearch([[required]], [[gender]])
+
+RuleSet: Contact(name, system, value, use)
+* contact.name = "{name}"
+* contact.telecom.system = {system}
+* contact.telecom.value = "{value}"
+* contact.telecom.use = {use}
+
+RuleSet: ImplementationGuideWithExpectation(guide, expectation)
+* implementationGuide[+] = "{guide}"
+* implementationGuide[=].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* implementationGuide[=].extension.valueCode = {expectation}
+
+RuleSet: FormatWithExpectation(format, expectation)
+* format[+] = {format}
+* format[=].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* format[=].extension.valueCode = {expectation}
+
+RuleSet: SystemInteraction(expectation, code)
+* rest.interaction[+].extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
+* rest.interaction[=].extension.valueCode = {expectation}
+* rest.interaction[=].code = {code}
+
+RuleSet: Extension(url, type, value)
+* extension[+].url = "{url}"
+* extension[=].{type} = {value}
+
+RuleSet: ExtensionWithChild(url, type, value, childUrl, childType, childValue)
+* extension[+].url = "{url}"
+* extension[=].{type} = {value}
+* extension[=].{type}.extension.url = "{childUrl}"
+* extension[=].{type}.extension.{childType} = "{childValue}"
