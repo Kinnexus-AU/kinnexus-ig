@@ -1,0 +1,2 @@
+Profile: KinnexusQuestionnaireResponse
+Parent: QuestionnaireResponse
