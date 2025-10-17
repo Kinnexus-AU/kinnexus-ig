@@ -11,7 +11,7 @@ RuleSet: CSQuestionnaireResponse
 * rest.resource[=].profile = Canonical(KinnexusQuestionnaireResponse)
 * rest.resource[=].documentation = "TODO: Write text"
 
-* insert ResourceConformanceExpectation(#SHOULD)
+* insert ResourceConformanceExpectation(#SHALL)
 
 * insert ComboSearchQRPatientStatusSortCount
 

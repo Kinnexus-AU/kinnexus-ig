@@ -17,7 +17,7 @@ RuleSet: CSObservation
 * rest.resource[=].supportedProfile[=].extension.valueCode = #SHALL
 * rest.resource[=].documentation = "If the responder supports the Observation resource, the responder **SHALL** support the Kinnexus profiles and the conformance expectations for the Observation resource."
 
-* insert ResourceConformanceExpectation(#SHOULD)
+* insert ResourceConformanceExpectation(#SHALL)
 
 * insert ComboSearchObservationPatientCodeSort
 

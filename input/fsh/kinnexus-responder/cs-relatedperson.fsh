@@ -3,7 +3,7 @@ RuleSet: CSRelatedPerson
 * rest.resource[=].profile = Canonical(KinnexusRelatedPerson)
 * rest.resource[=].documentation = "If the responder supports the RelatedPerson resource, the responder **SHALL** support the Kinnexus profile and the conformance expectations for the RelatedPerson resource."
 
-* insert ResourceConformanceExpectation(#SHOULD)
+* insert ResourceConformanceExpectation(#SHALL)
 
 * insert Interaction(#SHALL, #read)
 * insert Interaction(#SHALL, #search-type)
