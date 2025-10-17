@@ -61,3 +61,15 @@ RuleSet: ComboSearchDateRequired
 
 RuleSet: ComboSearchVaccineCodeRequired
 * insert ComboSearch([[required]], [[vaccine-code]])
+
+RuleSet: ComboSearchCodeRequired
+* insert ComboSearch([[required]], [[code]])
+
+RuleSet: ComboSearchBirthdateRequired
+* insert ComboSearch([[required]], [[birthdate]])
+
+RuleSet: ComboSearchFamilyRequired
+* insert ComboSearch([[required]], [[family]])
+
+RuleSet: ComboSearchGenderRequired
+* insert ComboSearch([[required]], [[gender]])

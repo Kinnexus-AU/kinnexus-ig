@@ -12,7 +12,7 @@ RuleSet: ComboSearchObservationPatientCategoryDate
 RuleSet: ComboSearchObservationPatientCode
 * insert ComboSearchExpectation(#SHALL)
 * insert ComboSearchPatientRequired
-* insert ComboSearch([[required]], [[code]])
+* insert ComboSearchCodeRequired
 
 RuleSet: ComboSearchObservationPatientCategoryStatus
 * insert ComboSearchExpectation(#SHOULD)
@@ -23,7 +23,7 @@ RuleSet: ComboSearchObservationPatientCategoryStatus
 RuleSet: ComboSearchObservationPatientCodeDate
 * insert ComboSearchExpectation(#SHOULD)
 * insert ComboSearchPatientRequired
-* insert ComboSearch([[required]], [[code]])
+* insert ComboSearchCodeRequired
 * insert ComboSearchDateRequired
 
 RuleSet: CSObservation

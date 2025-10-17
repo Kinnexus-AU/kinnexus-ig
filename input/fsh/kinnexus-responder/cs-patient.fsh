@@ -1,21 +1,21 @@
 RuleSet: ComboSearchPatientBirthdateFamily
 * insert ComboSearchExpectation(#SHOULD)
-* insert ComboSearch([[required]], [[birthdate]])
-* insert ComboSearch([[required]], [[family]])
+* insert ComboSearchBirthdateRequired
+* insert ComboSearchFamilyRequired
 
 RuleSet: ComboSearchPatientBirthdateName
 * insert ComboSearchExpectation(#SHOULD)
-* insert ComboSearch([[required]], [[birthdate]])
+* insert ComboSearchBirthdateRequired
 * insert ComboSearchNameRequired
 
 RuleSet: ComboSearchPatientFamilyGender
 * insert ComboSearchExpectation(#SHOULD)
-* insert ComboSearch([[required]], [[family]])
-* insert ComboSearch([[required]], [[gender]])
+* insert ComboSearchFamilyRequired
+* insert ComboSearchGenderRequired
 
 RuleSet: ComboSearchPatientGenderName
 * insert ComboSearchExpectation(#SHOULD)
-* insert ComboSearch([[required]], [[gender]])
+* insert ComboSearchGenderRequired
 * insert ComboSearchNameRequired
 
 RuleSet: CSPatient
