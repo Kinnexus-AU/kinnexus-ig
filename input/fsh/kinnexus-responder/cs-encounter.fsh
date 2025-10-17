@@ -1,41 +1,30 @@
 RuleSet: ComboSearchEncounterClassPatient
-* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].extension[=].valueCode = #SHOULD
+* insert ComboSearchExpectation(#SHOULD)
 * insert ComboSearchClassRequired
 * insert ComboSearchPatientRequired
-* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
 
 RuleSet: ComboSearchEncounterDatePatient
-* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].extension[=].valueCode = #SHALL
+* insert ComboSearchExpectation(#SHALL)
 * insert ComboSearchDateRequired
 * insert ComboSearchPatientRequired
-* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
 
 RuleSet: ComboSearchEncounterPatientLocation
-* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].extension[=].valueCode = #SHOULD
+* insert ComboSearchExpectation(#SHOULD)
 * insert ComboSearchPatientRequired
 * insert ComboSearchLocationRequired
-* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
 
 RuleSet: ComboSearchEncounterPatientStatus
-* rest.resource[=].extension[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].extension[=].valueCode = #SHOULD
+* insert ComboSearchExpectation(#SHOULD)
 * insert ComboSearchPatientRequired
 * insert ComboSearchStatusRequired
-* rest.resource[=].extension[=].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination"
 
-RuleSet: ComboSearchParamsEncounter
-* rest.resource[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-* rest.resource[=].extension[=].valueCode = #SHOULD
+RuleSet: CSEncounter
+* insert ResourceConformanceExpectation(#SHOULD)
+
 * insert ComboSearchEncounterDatePatient
 * insert ComboSearchEncounterClassPatient
 * insert ComboSearchEncounterPatientLocation
 * insert ComboSearchEncounterPatientStatus
-
-RuleSet: CSEncounter
-* insert ComboSearchParamsEncounter
 
 * rest.resource[=].type = #Encounter
 * rest.resource[=].profile = Canonical(KinnexusEncounter)
