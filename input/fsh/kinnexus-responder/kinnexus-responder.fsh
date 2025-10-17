@@ -8,7 +8,7 @@ Usage: #definition
 * status = #active
 * date = "2025-10-09"
 * publisher = "HL7 Australia"
-* description = "This CapabilityStatement describes the basic rules for the [Kinnexus Responder actor](ActorDefinition-au-core-actor-responder.html) that is responsible for providing responses to queries submitted by Kinnexus Requesters. The complete list of FHIR profiles, RESTful operations, and search parameters supported by Kinnexus Responders are defined in this CapabilityStatement."
+* description = "It lists the server's conformance expectations for the resource types required as a launch context, resource types required to support prepopulation of the form, resource types required to support writing back to the patient record, and QuestionnaireResponse requirements for managing form responses. These expectations include supported FHIR profiles, RESTful operations, and search parameters."
 * jurisdiction = urn:iso:std:iso:3166#AU
 * copyright = "All rights reserved Creative Commons License. Kinnexus© 2025+; Licensed Under Creative Commons No Rights Reserved."
 * kind = #requirements
