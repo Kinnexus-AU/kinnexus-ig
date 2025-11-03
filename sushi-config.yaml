@@ -80,6 +80,7 @@ menu:
   Home: index.html
   Guidance:
     App Integration: app-integration.html
+    CDS Hooks: cds-hooks.html
   FHIR Artefacts:
     Artefact Summary: artifacts.html
     Profiles and Extensions: profiles-and-extensions.html
