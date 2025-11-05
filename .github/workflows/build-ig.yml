@@ -18,3 +18,21 @@ jobs:
         with:
           name: ig
           path: ./output
+  publish:
+    if: contains(github.ref, 'tags/v')
+    needs:
+    - build
+    steps:
+    - name: Create release
+      uses: softprops/action-gh-release@v2
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ig
+        path: ig
+    - name: Archive
+      run: zip -r ig.zip ig
+    - name: Upload archive
+      uses: softprops/action-gh-release@v2
+      with:
+          files: ig.zip
