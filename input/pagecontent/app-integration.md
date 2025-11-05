@@ -1,38 +1,33 @@
-This page provides implementation guidance on integrating a Practice Management System (PMS) with the Kinnexus Application (Kinnexus App) based on the FHIR [SMART App Launch Implementation Guide](https://hl7.org/fhir/smart-app-launch/STU2.2/).
+This page provides implementation guidance on integrating a Practice Management System (Aged Care Software) with the Kinnexus Application (Kinnexus App) based on the FHIR [SMART App Launch Implementation Guide](https://hl7.org/fhir/smart-app-launch/STU2.2/).
 
-The PMS **SHALL** implement components that comply with the [Kinnexus Host](ActorDefinition-KinnexusHost.html), [Kinnexus Host FHIR Server](ActorDefinition-KinnexusHostFHIRServer.html) and [Kinnexus Host Authorization Server](ActorDefinition-KinnexusHostAuthorizationServer.html) actors specified in this implementation guide, to integrate with the Kinnexus App by supporting the required [Kinnexus Interactions](index.html#kinnexus-interactions) summarised on the [Home](index.html#kinnexus-interactions) page.
+The Aged Care Software **SHALL** implement components that comply with the [Kinnexus Host](ActorDefinition-KinnexusHost.html), [Kinnexus Host FHIR Server](ActorDefinition-KinnexusHostFHIRServer.html) and [Kinnexus Host Authorization Server](ActorDefinition-KinnexusHostAuthorizationServer.html) actors specified in this implementation guide, to integrate with the Kinnexus App by supporting the required [Kinnexus Interactions](index.html#kinnexus-interactions) summarised on the [Home](index.html#kinnexus-interactions) page.
 
 This Kinnexus App Integration page will provide additional guidance on implementing these Kinnexus Interactions.
 
 ### Kinnexus App Registration
-To establish a trust relationship between the PMS and the Kinnexus App that enables the Kinnexus App to be launched and exchange patient data with the PMS, the Kinnexus Host Authorization Server is required to have a once-off client registration configured with the following settings.
+To establish a trust relationship between the Aged Care Software and the Kinnexus App that enables the Kinnexus App to be launched and exchange patient data with the Aged Care Software, the Kinnexus Host Authorization Server is required to have a once-off client registration configured with the following settings.
 
-| Attribute    | Value                                          |
+| Attribute    | Value                                            |
 |--------------|--------------------------------------------------|
-| Client Name  | Kinnexus Application                  |
-| Client ID    | kinnexus-application                  |
-| Redirect URIs | https://FIX.THIS.URL.io/             |
+| Client Name  | Kinnexus                                         |
+| Client ID    | cb871610-e565-473a-90bf-4a6aa45ef5fe             |
+| Redirect URI | https://kinnexus.beda.software/auth              |
 
-How this client registration is performed is not specified in this implementation guide and it is the responsibility of the PMS admininstrator to ensure the client details are configured as specified above.
+How this client registration is performed is not specified in this implementation guide and it is the responsibility of the Aged Care Software admininstrator to ensure the client details are configured as specified above.
 
-Note that the Client ID is assigned by the Kinnexus App to allow multiple PMSs to launch the app without it maintaining a Client ID for each Kinnexus Host Authorization Server. If the Client ID can not be assigned in the Kinnexus Host Authorization Server (such as if the Auth Server requires Client IDs to be UUIDs, or if the server assigns an auto-generated Client ID), please contact AEHRC to arrange a workaround.
+Note that the Client ID is assigned by the Kinnexus App to allow multiple Aged Care Softwares to launch the app without it maintaining a Client ID for each Kinnexus Host Authorization Server. If the Client ID can not be assigned in the Kinnexus Host Authorization Server (such as if the Auth Server requires Client IDs to be UUIDs, or if the server assigns an auto-generated Client ID), please contact kinnexus to arrange a workaround.
 
 The Kinnexus App requests the following scopes, these can be configured in the Kinnexus Host Authorization Server client registration details as required.
-- launch
-- openid
 - fhirUser
 - online_access
-- patient/AllergyIntolerance.cus
-- patient/Condition.cus
-- patient/Encounter.r
-- patient/Immunization.cs
-- patient/Medication.r
-- patient/MedicationStatement.cus
-- patient/Observation.cs
-- patient/Patient.r
-- patient/QuestionnaireResponse.crus
-- user/Practitioner.r
-- launch/questionnaire?role=http://ns.electronichealth.net.au/smart/role/new
+- openid
+- profile
+- launch
+- patient/Observation.s
+- patient/Encounter.s
+- patient/Immunisation.s
+- patient/RelatedPerson.s
+- patient/AllergyIntolerance.s
 
 Other client registration details that may need to be configured in the Kinnexus Host Authorization Server based on the [Client Metadata fields defined in the OAuth 2.0 Dynamic Client Registration Protocol](https://datatracker.ietf.org/doc/html/rfc7591#section-2) are shown below.
 
@@ -51,19 +46,19 @@ The Kinnexus App Launch request has the following parameters as specified for [A
 
 | Parameter | Condition | Description |
 |-----------|-----------|-------------|
-| iss | required | Base URL of the PMS FHIR Server |
+| iss | required | Base URL of the Aged Care Software FHIR Server |
 | launch | required | Launch identifier used to retrieve the launch context as part of the authorization process |
 
 The Kinnexus App Launch URL **SHOULD** be configured in the Kinnexus Host and amended with the launch and iss parameters and their values as shown above. The base Kinnexus App Launch URL is provided in the table below.
 
 | Attribute            | Value          |
 |----------------------|----------------|
-| Kinnexus App Launch URL   | https://FIX.THIS.URL.io/launch |
+| Kinnexus App Launch URL   | https://kinnexus.beda.software/launch |
 
 The Kinnexus Host initiates the launch sequence by invoking a HTTP GET request in a Web browser agent (as a new browser tab or iframe) with the launch described above including the launch and iss parameters as shown in the example below.
 
 ```
-https://FIX.THIS.URL.io/launch?iss=https%3A%2F%2Fpmsserver.com.au/fhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5
+https://kinnexus.beda.software/launch?iss=https%3A%2F%2Fpmsserver.com.au/fhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5
 ```
 
 The response to the Kinnexus App Launch request will be a HTTP response that will be processed as usual by the Web browser agent that initiated the request. Under normal conditions the response will contain a HTML page or a HTTP redirect response.
@@ -77,11 +72,7 @@ The full set of launch contexts that **SHOULD** be supported by the Kinnexus Hos
 | Parameter | Condition | Description |
 |-----------|-----------|-------------|
 | patient	  | required  | Current patient identifier used to retrieve the Patient via FHIR Server |
-| encounter	| optional  | Current patient visit identifier used to retrieve the Encounter via FHIR Server |
-| sub	      | required  | Unique identifier of the user as known by the PMS authorization service |
-| preferred_username | optional  | Username used to login to PMS |
 | fhirUser	         | required	 | Current user identifier used to retrieve the user’s Practitioner resource via the FHIR API |
-| fhirContext        | required  | Health Check Questionnaire context to be launched <br/> `[{ "role": "http://ns.electronichealth.net.au/smart/role/new", "type": "Questionnaire", "canonical": " http://www.health.gov.au/assessments/mbs/715" }]` |
 
 An opache launch identifier that references the launch context is provided in the `launch` parameter of the Kinnexus App Launch URL as described above.
 
@@ -133,7 +124,7 @@ The Kinnexus App will use the HTTP GET method only, but the HTTP POST method is 
 In the case of a HTTP GET request, the query parameters **SHALL** be URL encoded as shown in request example below.
 
 ```
-GET https://auth.pmsserver.com.au/oauth/authorize?response_type=code&client_id=kinnexus-application&scope=launch%20openid%20fhirUser%20online_access%20patient%2FAllergyIntolerance.cus%20patient%2FCondition.cus%20patient%2FEncounter.r%20patient%2FImmunization.cs%20patient%2FMedication.r%20patient%2FMedicationStatement.cus%20patient%2FObservation.cs%20patient%2FPatient.r%20patient%2FQuestionnaireResponse.crus%20user%2FPractitioner.r%20launch%2Fquestionnaire%3Frole%3Dhttp%3A%2F%2Fns.electronichealth.net.au%2Fsmart%2Frole%2Fnew&redirect_uri=https%3A%2F%2FFIX.THIS.URL.io&state=NhlJ741C31hRDf8v&aud=https%3A%2F%2Fpmsserver.com.au%2Ffhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstwcM&code_challenge_method=S256
+GET https://auth.pmsserver.com.au/oauth/authorize?response_type=code&client_id=kinnexus-application&scope=launch%20openid%20fhirUser%20online_access%20patient%2FAllergyIntolerance.cus%20patient%2FCondition.cus%20patient%2FEncounter.r%20patient%2FImmunization.cs%20patient%2FMedication.r%20patient%2FMedicationStatement.cus%20patient%2FObservation.cs%20patient%2FPatient.r%20patient%2FQuestionnaireResponse.crus%20user%2FPractitioner.r%20launch%2Fquestionnaire%3Frole%3Dhttp%3A%2F%2Fns.electronichealth.net.au%2Fsmart%2Frole%2Fnew&redirect_uri=https%3A%2F%2Fkinnexus.beda.software&state=NhlJ741C31hRDf8v&aud=https%3A%2F%2Fpmsserver.com.au%2Ffhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstwcM&code_challenge_method=S256
 ```
 
 #### Authorization POST Request
@@ -144,7 +135,7 @@ POST /oauth/authorize
 Content-Type: application/x-www-form-urlencoded
 Host: https://auth.pmsserver.com.au
 
-response_type=code&client_id=kinnexus-application&scope=launch%20openid%20fhirUser%20online_access%20patient%2FAllergyIntolerance.cus%20patient%2FCondition.cus%20patient%2FEncounter.r%20patient%2FImmunization.cs%20patient%2FMedication.r%20patient%2FMedicationStatement.cus%20patient%2FObservation.cs%20patient%2FPatient.r%20patient%2FQuestionnaireResponse.crus%20user%2FPractitioner.r%20launch%2Fquestionnaire%3Frole%3Dhttp%3A%2F%2Fns.electronichealth.net.au%2Fsmart%2Frole%2Fnew&redirect_uri=https%3A%2F%2FFIX.THIS.URL.io&state=NhlJ741C31hRDf8v&aud=https%3A%2F%2Fpmsserver.com.au%2Ffhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstwcM&code_challenge_method=S256
+response_type=code&client_id=kinnexus-application&scope=launch%20openid%20fhirUser%20online_access%20patient%2FAllergyIntolerance.cus%20patient%2FCondition.cus%20patient%2FEncounter.r%20patient%2FImmunization.cs%20patient%2FMedication.r%20patient%2FMedicationStatement.cus%20patient%2FObservation.cs%20patient%2FPatient.r%20patient%2FQuestionnaireResponse.crus%20user%2FPractitioner.r%20launch%2Fquestionnaire%3Frole%3Dhttp%3A%2F%2Fns.electronichealth.net.au%2Fsmart%2Frole%2Fnew&redirect_uri=https%3A%2F%2Fkinnexus.beda.software&state=NhlJ741C31hRDf8v&aud=https%3A%2F%2Fpmsserver.com.au%2Ffhir&launch=15fd8cc0b5ce4e4b9ab1cb83495412f5&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstwcM&code_challenge_method=S256
 ```
 
 ### Authorization Callback
@@ -171,7 +162,7 @@ An example of the response is shown below.
 
 ```
 HTTP 302 Found
-Location: https://FIX.THIS.URL.io?error=unauthorized_client&error_description=redirect_uri%20does%20not%20match%20client%20registration
+Location: https://kinnexus.beda.software?error=unauthorized_client&error_description=redirect_uri%20does%20not%20match%20client%20registration
 ```
 
 When the Web browser client receives the authorize request response, the application **SHALL** display the error details and not attempt to access the Kinnexus Host FHIR Server.
@@ -206,7 +197,7 @@ POST /oauth/token
 Content-Type: application/x-www-form-urlencoded
 Host: https://auth.pmsserver.com.au
 
-grant_type=authorization_code&code=c1c3b2fe54334efb901e34b095f837dd&client_id=kinnexus-application&redirect_uri=https%3A%2F%2FFIX.THIS.URL.io&code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+grant_type=authorization_code&code=c1c3b2fe54334efb901e34b095f837dd&client_id=kinnexus-application&redirect_uri=https%3A%2F%2Fkinnexus.beda.software&code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
 ```
 
 #### Token Response
@@ -274,11 +265,11 @@ The JWS Payload claims required by the [OIDC specification](https://openid.net/s
 
 | Element | Description |
 | ------- | ----------- |
-| sub | Unique identifier of the user as known by the PMS authorization service |
+| sub | Unique identifier of the user as known by the Aged Care Software authorization service |
 | iss | Authorization service issuer |
 | aud | Client URI |
 | fhirUser | FHIR Practitioner reference | 
-| preferred_username | Optional username used by the user to login to the PMS | 
+| preferred_username | Optional username used by the user to login to the Aged Care Software | 
 | iat | Token issued at |
 | exp | Token expiry time |
 
@@ -287,8 +278,8 @@ An example of the JWS Payload is shown below.
 ```
 {
   "sub":"f256d3ba-bb70-4613-a631-825d500c57fa",
-  "iss":"https://auth.pmsserver.com.au",
-  "aud":"https://FIX.THIS.URL.io",
+  "iss":"https://agedcaresoftware.com.au",
+  "aud":"https://kinnexus.beda.software",
   "fhirUser":"Practitioner/f256d3ba-bb70-4613-a631-825d500c57fa",
   "preferred_username":"janedoe",
   "iat":1690903483,
