@@ -19,6 +19,7 @@ jobs:
           name: ig
           path: ./output
   publish:
+    runs-on: ubuntu-latest
     if: contains(github.ref, 'tags/v')
     needs:
     - build
